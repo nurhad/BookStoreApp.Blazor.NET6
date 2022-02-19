@@ -61,6 +61,7 @@ namespace BookStoreApp.API.Controllers
             {
                 //var book = await _context.Books.FindAsync(id);
 
+                //Menggunakan DTO
                 var book = await _context.Books
                     .Include(q => q.Author)
                     .ProjectTo<BookDetailsDto>(mapper.ConfigurationProvider)
@@ -74,11 +75,7 @@ namespace BookStoreApp.API.Controllers
 
                 //return book;
 
-                //return Ok(book);
-
-                //Menggunakan DTO
-                var bookDto = mapper.Map<BookReadOnlyDto>(book);
-                return Ok(bookDto);
+                return Ok(book);
             }
             catch (Exception ex)
             {
